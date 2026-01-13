@@ -1,0 +1,145 @@
+/* RESET */
+* {
+  box-sizing: border-box;
+}
+
+/* CRITICAL FOR SCROLL */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; 
+  font-family: system-ui, sans-serif;
+  background: #0f1020;
+}
+
+/* Canvas background (LightPillar) */
+canvas,
+.light-pillar {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none; 
+}
+
+/* Scroll container - hide scrollbar but keep scroll */
+.scroll-stack-scroller {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
+  z-index: 2;
+
+  /* Hide scrollbar cross-browser */
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* IE/Edge */
+}
+.scroll-stack-scroller::-webkit-scrollbar {
+  display: none;               /* Chrome/Safari */
+}
+
+/* Switch styles - positioned top-right */
+.switch-container {
+  position: fixed;       /* stays in place when scrolling */
+  top: 1rem;             /* distance from top */
+  right: 1rem;           /* distance from right */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 1000;        
+}
+
+.switch-label {
+  color: #fff;           /* visible against dark gradient */
+  font-size: 0.9rem;
+  line-height: 25px;     /* aligns with switch height */
+}
+
+.switch-root {
+  width: 42px;
+  height: 25px;
+  background-color: #444;
+  border-radius: 9999px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.switch-root:hover {
+  background-color: #666;
+}
+
+.switch-root[data-state='checked'] {
+  background-color: #4ade80; /* green when ON */
+}
+
+.switch-thumb {
+  display: block;
+  width: 21px;
+  height: 21px;
+  background-color: white;
+  border-radius: 9999px;
+  transition: transform 0.2s;
+  transform: translateX(-5px);
+}
+
+.switch-root[data-state='checked'] .switch-thumb {
+  transform: translateX(11px);
+}
+
+/* Weather bar - bottom center */
+.weather-bar {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(520px, 90%);
+  height: 90px;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 12px 20px;
+  border-radius: 20px;
+
+  background: rgba(15, 16, 32, 0.75);
+  backdrop-filter: blur(10px);
+
+  color: white;
+  z-index: 2000; /* above switch */
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+
+  animation: fadeIn 0.5s ease-out;
+}
+
+.weather-left {
+  width: 64px;
+  height: 64px;
+}
+
+.weather-right h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.weather-right p {
+  margin: 2px 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.weather-right span {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
