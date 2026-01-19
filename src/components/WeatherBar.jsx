@@ -1,13 +1,14 @@
 import ReactWeather, { useOpenWeather } from 'react-open-weather';
 
-const App = () => {
+export default function WeatherBar() {
   const { data, isLoading, errorMessage } = useOpenWeather({
-    key: 'YOUR-API-KEY',
+    key: '12475b12c6559b5eda54a24bebaeb96b', 
     lat: '48.137154',
     lon: '11.576124',
     lang: 'en',
-    unit: 'metric', // values are (metric, standard, imperial)
+    unit: 'metric',
   });
+
   return (
     <ReactWeather
       isLoading={isLoading}
@@ -19,4 +20,4 @@ const App = () => {
       showForecast
     />
   );
-};
+}
