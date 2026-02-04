@@ -9,6 +9,8 @@ import ErrorBoundary from "./ui/ErrorBoundry";
 import "./index.css";
 import "./App.css";
 
+import Blog from "./components/Blog";
+
 
 
 
@@ -87,6 +89,10 @@ export default function App() {
           <h2>Aspirations</h2>
           <ul style={{ textAlign: "left" }}>{aspirations.map((a, i) => <li key={i}>{a}</li>)}</ul>
         </ScrollStackItem>
+        <ScrollStackItem>
+  <Blog />
+</ScrollStackItem>
+
       </ScrollStack>
      <ErrorBoundary><WeatherBar /></ErrorBoundary>
         
